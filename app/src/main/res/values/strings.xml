@@ -12,4 +12,5 @@
     <string name="success_text">Congratulation ! You succeed in %d steps and %d seconds</string>
     <string name="fail_text">Unfortunately you failed. Maybe you should retry ?</string>
     <string name="retry_text">Retry</string>
+    <string name="solution_generation_text">Please wait during the generation of the solution</string>
 </resources>

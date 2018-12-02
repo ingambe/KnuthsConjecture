@@ -1,5 +1,7 @@
 package com.tassel.ingambe.knuthsconjecture.View;
 
+import com.tassel.ingambe.knuthsconjecture.Model.GameState;
+
 public interface MainView {
 
     void setCurrentNumber(double current);
@@ -10,5 +12,7 @@ public interface MainView {
     void showSuccess(int steps, long seconds);
     void showFail();
     long getChronometerSeconds();
+    void colorOperation(GameState.Operator operator);
+    void uncolorButton();
 
 }

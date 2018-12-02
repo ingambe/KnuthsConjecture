@@ -65,7 +65,7 @@ public class Solver {
         double currentValue;
         List<GameState.Operator> oldOperations;
 
-        public Node(double currentValue, List<GameState.Operator> oldOperations) {
+        private Node(double currentValue, List<GameState.Operator> oldOperations) {
             this.currentValue = currentValue;
             this.oldOperations = oldOperations;
         }
