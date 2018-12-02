@@ -18,7 +18,6 @@ public class GameState {
         operationsList = new ArrayList<>();
     }
 
-
     public void operation(Operator operator){
         operationsList.add(operator);
         switch (operator){
@@ -47,7 +46,7 @@ public class GameState {
         return current <= 1;
     }
 
-    private double factorial(double n) {
+    public static double factorial(double n) {
         return (n <= 1) ? 1 : n * factorial(n - 1);
     }
 
@@ -65,6 +64,10 @@ public class GameState {
 
     public int getOperationCount(){
         return operationsList.size();
+    }
+
+    public void setGoal(double goal){
+        this.goal = goal;
     }
 
 }
