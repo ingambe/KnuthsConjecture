@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void setOperationsCount(int count) {
-        tvGoal.setText(getString(R.string.op_count_text, count));
+        tvOperationCount.setText(getString(R.string.op_count_text, count));
     }
 
     @Override
@@ -109,7 +109,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showSuccess(int steps, long seconds) {
+    public void restartChronometer() {
+        chronometer.setBase(SystemClock.elapsedRealtime());
+    }
+
+    @Override
+    public void showSuccess(int steps, double seconds) {
         String text = getString(R.string.success_text, steps, seconds);
         createDialog(text);
     }
@@ -140,8 +145,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public long getChronometerSeconds() {
-        return (SystemClock.elapsedRealtime() - chronometer.getBase());
+    public double getChronometerSeconds() {
+        return (SystemClock.elapsedRealtime() - chronometer.getBase()) / 1000.0;
     }
 
     @Override

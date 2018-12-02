@@ -37,6 +37,8 @@ public class MainPresenter {
 
     public void restart(MainView view){
         model = new GameState();
+        view.stopChronometer();
+        view.restartChronometer();
         initView(view);
     }
 

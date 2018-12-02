@@ -9,9 +9,10 @@ public interface MainView {
     void setOperationsCount(int count);
     void startChronometer();
     void stopChronometer();
-    void showSuccess(int steps, long seconds);
+    void restartChronometer();
+    void showSuccess(int steps, double seconds);
     void showFail();
-    long getChronometerSeconds();
+    double getChronometerSeconds();
     void colorOperation(GameState.Operator operator);
     void uncolorButton();
 
