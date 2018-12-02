@@ -7,7 +7,8 @@ public interface MainView {
     void setOperationsCount(int count);
     void startChronometer();
     void stopChronometer();
-    void showSuccess();
+    void showSuccess(int steps, long seconds);
     void showFail();
+    long getChronometerSeconds();
 
 }

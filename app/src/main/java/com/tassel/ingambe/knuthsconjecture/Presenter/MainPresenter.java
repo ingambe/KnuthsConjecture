@@ -8,12 +8,12 @@ public class MainPresenter {
     private MainView view;
     private GameState model;
 
-    public MainPresenter(MainView view) {
-        this.view = view;
+    public MainPresenter() {
         model = new GameState();
     }
 
-    public void initView(){
+    public void initView(MainView view){
+        this.view = view;
         view.setCurrentNumber(model.getCurrent());
         view.setGoalNumber(model.getGoal());
         view.startChronometer();
@@ -25,11 +25,16 @@ public class MainPresenter {
         view.setCurrentNumber(model.getCurrent());
         if(model.gameEnded()){
             view.stopChronometer();
-            view.showSuccess();
+            view.showSuccess(model.getOperationCount(), view.getChronometerSeconds());
         } else if(model.gameLost()){
             view.stopChronometer();
             view.showFail();
         }
+    }
+
+    public void restart(MainView view){
+        model = new GameState();
+        initView(view);
     }
 
 }

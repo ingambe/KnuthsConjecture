@@ -1,10 +1,13 @@
 package com.tassel.ingambe.knuthsconjecture;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.tassel.ingambe.knuthsconjecture.Model.GameState;
@@ -19,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.tv_operation_count)
     TextView tvOperationCount;
-    @BindView(R.id.tv_elapsed_time)
-    TextView tvElapsedTime;
+    @BindView(R.id.chrono_time)
+    Chronometer chronometer;
     @BindView(R.id.tv_current_number)
     TextView tvCurrentNumber;
     @BindView(R.id.tv_goal)
@@ -43,8 +46,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        presenter = new MainPresenter(this);
-        presenter.initView();
+        presenter = (MainPresenter) getLastCustomNonConfigurationInstance();
+        if(presenter == null) {
+            presenter = new MainPresenter();
+        }
+        presenter.initView(this);
     }
 
     @OnClick({R.id.bt_square_root, R.id.bt_factorial, R.id.bt_floor, R.id.bt_square})
@@ -82,21 +88,47 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void startChronometer() {
-
+        chronometer.start();
     }
 
     @Override
     public void stopChronometer() {
-
+        chronometer.stop();
     }
 
     @Override
-    public void showSuccess() {
-        Log.d("TEST", "success !!");
+    public void showSuccess(int steps, long seconds) {
+        String text = getString(R.string.success_text, steps, seconds);
+        createDialog(text);
     }
 
     @Override
     public void showFail() {
-        Log.d("TEST", "fail !!");
+        String text = getString(R.string.fail_text);
+        createDialog(text);
+    }
+
+    private void createDialog(String text){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setMessage(text)
+                .setNeutralButton(getString(R.string.retry_text), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        presenter.restart(MainActivity.this);
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return presenter;
+    }
+
+    @Override
+    public long getChronometerSeconds() {
+        return (SystemClock.elapsedRealtime() - chronometer.getBase());
     }
 }
