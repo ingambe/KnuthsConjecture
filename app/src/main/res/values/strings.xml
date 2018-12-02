@@ -2,9 +2,9 @@
     <string name="app_name">Knuth\'s Conjecture</string>
     <string name="op_count_text">Operations count: %d</string>
     <string name="elapsed_text">Elapsed time: %d</string>
-    <string name="goal_text">Goal: %d</string>
+    <string name="goal_text">Goal: %.2f</string>
     <string name="hint_text">Hint</string>
-    <string name="number_text">%d</string>
+    <string name="number_text">%.2f</string>
     <string name="square_toot_text">√x</string>
     <string name="factorial_text">x!</string>
     <string name="floor_text">\u230Ax\u230B</string>

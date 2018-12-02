@@ -1,5 +1,7 @@
 package com.tassel.ingambe.knuthsconjecture.Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class GameState {
@@ -7,15 +9,18 @@ public class GameState {
     private double current;
     private double goal;
     private Random random;
+    private List<Operator> operationsList;
 
     public GameState() {
-        current = 4;
-        random = new Random();
-        goal = random.nextInt(995) + 5;
+        this.random = new Random();
+        this.current = 4;
+        this.goal = random.nextInt(995) + 5;
+        operationsList = new ArrayList<>();
     }
 
 
     public void operation(Operator operator){
+        operationsList.add(operator);
         switch (operator){
             case FLOOR:
                 current = Math.floor(current);
@@ -24,6 +29,7 @@ public class GameState {
                 current = current * current;
                 break;
             case FACTORIAL:
+                current = Math.floor(current);
                 current = factorial(current);
                 break;
             default:
@@ -32,13 +38,33 @@ public class GameState {
         }
     }
 
-    private double factorial(double n) {
-        return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
+    public boolean gameEnded(){
+        return current == goal;
+    }
 
+    // If the current is inferior at one we have lost !
+    public boolean gameLost(){
+        return current <= 1;
+    }
+
+    private double factorial(double n) {
+        return (n <= 1) ? 1 : n * factorial(n - 1);
     }
 
     public enum Operator {
         SQUARE_ROOT, FACTORIAL, FLOOR, SQUARE
+    }
+
+    public double getCurrent() {
+        return current;
+    }
+
+    public double getGoal() {
+        return goal;
+    }
+
+    public int getOperationCount(){
+        return operationsList.size();
     }
 
 }
