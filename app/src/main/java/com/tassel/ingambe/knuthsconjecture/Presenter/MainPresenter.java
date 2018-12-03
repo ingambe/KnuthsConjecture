@@ -18,6 +18,7 @@ public class MainPresenter {
     public void initView(MainView view){
         this.view = view;
         view.setCurrentNumber(model.getCurrent());
+        view.setOperationsCount(model.getOperationCount());
         view.setGoalNumber(model.getGoal());
         view.updateButtonText(model.getCurrent());
         view.startChronometer();
@@ -52,6 +53,14 @@ public class MainPresenter {
 
     public void colorHint(GameState.Operator operator){
         view.colorOperation(operator);
+    }
+
+    public void undoMove(){
+        model.undoLastMove();
+        view.uncolorButton();
+        view.updateButtonText(model.getCurrent());
+        view.setCurrentNumber(model.getCurrent());
+        view.setOperationsCount(model.getOperationCount());
     }
 
 }

@@ -15,4 +15,5 @@
     <string name="fail_text">Unfortunately you failed. Maybe you should retry ?</string>
     <string name="retry_text">Retry</string>
     <string name="solution_generation_text">Please wait during the generation of the solution</string>
+    <string name="undo_menu">Undo Move</string>
 </resources>

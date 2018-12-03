@@ -9,10 +9,13 @@ public class GameState {
     private double current;
     private double goal;
     private List<Operator> operationsList;
+    private List<Double> valueList;
 
     public GameState() {
         Random random = new Random();
         this.current = 4;
+        valueList = new ArrayList<>();
+        valueList.add(current);
         //this.goal = random.nextInt(96) + 5;
         this.goal = 5;
         operationsList = new ArrayList<>();
@@ -35,6 +38,7 @@ public class GameState {
                 current = Math.sqrt(current);
                 break;
         }
+        valueList.add(current);
     }
 
     public boolean gameEnded(){
@@ -68,6 +72,14 @@ public class GameState {
 
     public void setGoal(double goal){
         this.goal = goal;
+    }
+
+    public void undoLastMove(){
+        if(valueList.size() > 1) {
+            current = valueList.get(valueList.size() - 2);
+            operationsList.remove(operationsList.size() - 1);
+            valueList.remove(valueList.size() - 1);
+        }
     }
 
 }

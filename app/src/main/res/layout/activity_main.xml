@@ -83,16 +83,17 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/colorPrimary"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button"
             android:text="@string/square_root_text"
             android:textSize="@dimen/button_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/bt_floor"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5"
-            android:gravity="bottom|center"
-            android:paddingBottom="@dimen/padding_bottom_button" />
+            app:layout_constraintWidth_percent="0.5" />
 
         <Button
             android:id="@+id/bt_factorial"
@@ -118,6 +119,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorPrimary"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button"
             android:text="@string/floor_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintHeight_default="percent"
@@ -125,9 +128,7 @@
             app:layout_constraintStart_toStartOf="@+id/bt_square_root"
             app:layout_constraintTop_toBottomOf="@+id/bt_square_root"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5"
-            android:gravity="bottom|center"
-            android:paddingBottom="@dimen/padding_bottom_button" />
+            app:layout_constraintWidth_percent="0.5" />
 
         <Button
             android:id="@+id/bt_square"
