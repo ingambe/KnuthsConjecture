@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tassel.ingambe.knuthsconjecture.Model.GameState;
 import com.tassel.ingambe.knuthsconjecture.Presenter.MainPresenter;
@@ -107,6 +107,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void setCurrentNumber(double current) {
         if(current < 10000) {
             tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_number_size));
+            tvCurrentNumber.setText(getString(R.string.number_text, current));
+        } else if(current > 1E15){
+            tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_really_big_number_size));
             tvCurrentNumber.setText(getString(R.string.number_text, current));
         } else {
             tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_big_number_size));
@@ -203,7 +206,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void updateButtonText(double current) {
-        btFloor.setText(getString(R.string.floor_text, Math.floor(current)));
         if(current < 15){
             btFactorial.setText(getString(R.string.factorial_text, GameState.factorial(Math.floor(current))));
         } else {
@@ -214,13 +216,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
         } else {
             btSquare.setText(getString(R.string.big_square_text));
         }
-        btSquareRoot.setText(getString(R.string.square_root_text, Math.sqrt(current)));
+        if(current < 1E15) {
+            btSquareRoot.setText(getString(R.string.square_root_text, Math.sqrt(current)));
+            btFloor.setText(getString(R.string.floor_text, Math.floor(current)));
+        } else {
+            btSquareRoot.setText(getString(R.string.big_square_root_text));
+            btFloor.setText(getString(R.string.big_floor_text));
+        }
+    }
+
+    @Override
+    public void showBigNumber() {
+        Toast.makeText(this, getString(R.string.too_big_dialog), Toast.LENGTH_LONG).show();
     }
 
     private static class HintTask extends AsyncTask<Void, Void, GameState.Operator>{
 
-        private MainPresenter presenter;
-        private AlertDialog.Builder builder;
+        private final MainPresenter presenter;
+        private final AlertDialog.Builder builder;
         private AlertDialog dialog;
 
         HintTask(MainPresenter presenter, AlertDialog.Builder builder) {
@@ -248,7 +261,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         @Override
         protected void onPostExecute(GameState.Operator operator) {
             presenter.colorHint(operator);
-            Log.d("HINT", operator.toString());
             dialog.dismiss();
         }
     }

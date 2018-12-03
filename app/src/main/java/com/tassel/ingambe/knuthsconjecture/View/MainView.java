@@ -16,5 +16,6 @@ public interface MainView {
     void colorOperation(GameState.Operator operator);
     void uncolorButton();
     void updateButtonText(double current);
+    void showBigNumber();
 
 }

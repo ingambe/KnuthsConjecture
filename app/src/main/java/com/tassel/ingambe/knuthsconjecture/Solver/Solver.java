@@ -62,18 +62,12 @@ public class Solver {
 
     private static class Node {
 
-        double currentValue;
-        List<GameState.Operator> oldOperations;
+        final double currentValue;
+        final List<GameState.Operator> oldOperations;
 
         private Node(double currentValue, List<GameState.Operator> oldOperations) {
             this.currentValue = currentValue;
             this.oldOperations = oldOperations;
-        }
-
-        public Node(double currentValue, GameState.Operator operation) {
-            this.currentValue = currentValue;
-            this.oldOperations = new ArrayList<>();
-            this.oldOperations.add(operation);
         }
 
     }

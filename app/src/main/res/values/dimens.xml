@@ -2,6 +2,7 @@
 <resources>
     <dimen name="current_number_size">62sp</dimen>
     <dimen name="current_big_number_size">48sp</dimen>
+    <dimen name="current_really_big_number_size">24sp</dimen>
     <dimen name="goal_size">24sp</dimen>
     <dimen name="button_text_size">24sp</dimen>
     <dimen name="hint_text_size">24sp</dimen>

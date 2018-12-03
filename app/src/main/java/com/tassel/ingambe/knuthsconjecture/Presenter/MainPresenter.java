@@ -25,17 +25,22 @@ public class MainPresenter {
     }
 
     public void applyOperator(GameState.Operator operator){
-        model.operation(operator);
-        view.setOperationsCount(model.getOperationCount());
-        view.setCurrentNumber(model.getCurrent());
-        if(model.gameEnded()){
-            view.stopChronometer();
-            view.showSuccess(model.getOperationCount(), view.getChronometerSeconds());
-        } else if(model.gameLost()){
-            view.stopChronometer();
-            view.showFail();
+        if((operator == GameState.Operator.FACTORIAL && model.getCurrent() > 30)
+                || (operator == GameState.Operator.SQUARE && model.getCurrent() > 1E50)){
+            view.showBigNumber();
+        } else {
+            model.operation(operator);
+            view.setOperationsCount(model.getOperationCount());
+            view.setCurrentNumber(model.getCurrent());
+            if (model.gameEnded()) {
+                view.stopChronometer();
+                view.showSuccess(model.getOperationCount(), view.getChronometerSeconds());
+            } else if (model.gameLost()) {
+                view.stopChronometer();
+                view.showFail();
+            }
+            view.updateButtonText(model.getCurrent());
         }
-        view.updateButtonText(model.getCurrent());
     }
 
     public void restart(MainView view){

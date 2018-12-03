@@ -8,16 +8,15 @@ public class GameState {
 
     private double current;
     private double goal;
-    private List<Operator> operationsList;
-    private List<Double> valueList;
+    private final List<Operator> operationsList;
+    private final List<Double> valueList;
 
     public GameState() {
         Random random = new Random();
         this.current = 4;
         valueList = new ArrayList<>();
         valueList.add(current);
-        //this.goal = random.nextInt(96) + 5;
-        this.goal = 5;
+        this.goal = random.nextInt(96) + 5;
         operationsList = new ArrayList<>();
     }
 
