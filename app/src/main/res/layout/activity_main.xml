@@ -33,6 +33,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="@string/number_text"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/current_number_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +58,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/hint_text"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/hint_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,20 +80,24 @@
             android:id="@+id/bt_square_root"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="@string/square_toot_text"
+            android:background="@color/colorPrimary"
+            android:text="@string/square_root_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintHeight_default="percent"
             app:layout_constraintHeight_percent="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintWidth_percent="0.5"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button" />
 
         <Button
             android:id="@+id/bt_factorial"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
+            android:background="@color/colorPrimary"
             android:text="@string/factorial_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,13 +106,16 @@
             app:layout_constraintStart_toEndOf="@+id/bt_square_root"
             app:layout_constraintTop_toTopOf="@+id/bt_square_root"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintWidth_percent="0.5"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button"/>
 
         <Button
             android:id="@+id/bt_floor"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
             android:text="@string/floor_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintHeight_default="percent"
@@ -114,13 +123,16 @@
             app:layout_constraintStart_toStartOf="@+id/bt_square_root"
             app:layout_constraintTop_toBottomOf="@+id/bt_square_root"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintWidth_percent="0.5"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button" />
 
         <Button
             android:id="@+id/bt_square"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
             android:text="@string/square_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintEnd_toEndOf="@+id/bt_factorial"
@@ -128,7 +140,9 @@
             app:layout_constraintHeight_percent="0.5"
             app:layout_constraintTop_toBottomOf="@+id/bt_factorial"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintWidth_percent="0.5"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

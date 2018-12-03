@@ -19,6 +19,7 @@ public class MainPresenter {
         this.view = view;
         view.setCurrentNumber(model.getCurrent());
         view.setGoalNumber(model.getGoal());
+        view.updateButtonText(model.getCurrent());
         view.startChronometer();
     }
 
@@ -33,12 +34,14 @@ public class MainPresenter {
             view.stopChronometer();
             view.showFail();
         }
+        view.updateButtonText(model.getCurrent());
     }
 
     public void restart(MainView view){
         model = new GameState();
         view.stopChronometer();
         view.restartChronometer();
+        view.uncolorButton();
         initView(view);
     }
 

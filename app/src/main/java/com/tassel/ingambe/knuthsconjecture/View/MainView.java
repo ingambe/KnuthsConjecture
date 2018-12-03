@@ -15,5 +15,6 @@ public interface MainView {
     double getChronometerSeconds();
     void colorOperation(GameState.Operator operator);
     void uncolorButton();
+    void updateButtonText(double current);
 
 }

@@ -5,10 +5,11 @@
     <string name="goal_text">Goal: %.2f</string>
     <string name="hint_text">Hint</string>
     <string name="number_text">%.2f</string>
-    <string name="square_toot_text">√x</string>
-    <string name="factorial_text">x!</string>
-    <string name="floor_text">\u230Ax\u230B</string>
-    <string name="square_text">x\u00B2</string>
+    <string name="square_root_text">√x\n\n%.2f</string>
+    <string name="factorial_text">x!\n\n%.2f</string>
+    <string name="big_factorial_text">x!\n\nToo big</string>
+    <string name="floor_text">\u230Ax\u230B\n\n%.2f</string>
+    <string name="square_text">x\u00B2\n\n%.2f</string>
     <string name="success_text">Congratulation ! You succeed in %d steps and %.2f seconds</string>
     <string name="fail_text">Unfortunately you failed. Maybe you should retry ?</string>
     <string name="retry_text">Retry</string>

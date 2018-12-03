@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -13,10 +14,7 @@ import android.widget.TextView;
 
 import com.tassel.ingambe.knuthsconjecture.Model.GameState;
 import com.tassel.ingambe.knuthsconjecture.Presenter.MainPresenter;
-import com.tassel.ingambe.knuthsconjecture.Solver.Solver;
 import com.tassel.ingambe.knuthsconjecture.View.MainView;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -153,26 +151,38 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void colorOperation(GameState.Operator operator) {
         switch (operator) {
             case SQUARE_ROOT:
-                btSquareRoot.setBackground(getDrawable(R.color.colorPrimary));
+                btSquareRoot.setBackground(getDrawable(R.color.colorAccent));
                 break;
             case FACTORIAL:
-                btFactorial.setBackground(getDrawable(R.color.colorPrimary));
+                btFactorial.setBackground(getDrawable(R.color.colorAccent));
                 break;
             case SQUARE:
-                btSquare.setBackground(getDrawable(R.color.colorPrimary));
+                btSquare.setBackground(getDrawable(R.color.colorAccent));
                 break;
             case FLOOR:
-                btFloor.setBackground(getDrawable(R.color.colorPrimary));
+                btFloor.setBackground(getDrawable(R.color.colorAccent));
                 break;
         }
     }
 
     @Override
     public void uncolorButton() {
-        btSquareRoot.setBackgroundResource(0);
-        btFactorial.setBackgroundResource(0);
-        btSquare.setBackgroundResource(0);
-        btFloor.setBackgroundResource(0);
+        btSquareRoot.setBackground(getDrawable(R.color.colorPrimary));
+        btFactorial.setBackground(getDrawable(R.color.colorPrimary));
+        btSquare.setBackground(getDrawable(R.color.colorPrimary));
+        btFloor.setBackground(getDrawable(R.color.colorPrimary));
+    }
+
+    @Override
+    public void updateButtonText(double current) {
+        btFloor.setText(getString(R.string.floor_text, Math.floor(current)));
+        if(current < 15){
+            btFactorial.setText(getString(R.string.factorial_text, GameState.factorial(Math.floor(current))));
+        } else {
+            btFactorial.setText(getString(R.string.big_factorial_text));
+        }
+        btSquare.setText(getString(R.string.square_text, current * current));
+        btSquareRoot.setText(getString(R.string.square_root_text, Math.sqrt(current)));
     }
 
     private static class HintTask extends AsyncTask<Void, Void, GameState.Operator>{
@@ -206,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         @Override
         protected void onPostExecute(GameState.Operator operator) {
             presenter.colorHint(operator);
+            Log.d("HINT", operator.toString());
             dialog.dismiss();
         }
     }
