@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -83,7 +84,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void setCurrentNumber(double current) {
-        tvCurrentNumber.setText(getString(R.string.number_text, current));
+        if(current < 10000) {
+            tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_number_size));
+            tvCurrentNumber.setText(getString(R.string.number_text, current));
+        } else {
+            tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_big_number_size));
+            tvCurrentNumber.setText(getString(R.string.number_text, current));
+        }
     }
 
     @Override
@@ -181,7 +188,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         } else {
             btFactorial.setText(getString(R.string.big_factorial_text));
         }
-        btSquare.setText(getString(R.string.square_text, current * current));
+        if(current < 20000) {
+            btSquare.setText(getString(R.string.square_text, current * current));
+        } else {
+            btSquare.setText(getString(R.string.big_square_text));
+        }
         btSquareRoot.setText(getString(R.string.square_root_text, Math.sqrt(current)));
     }
 
