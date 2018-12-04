@@ -1,6 +1,7 @@
 package com.tassel.ingambe.knuthsconjecture;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
     TextView tvUndo;
     @BindView(R.id.tv_retry)
     TextView tvRetry;
+
+    private static final String PREFRENCE_NAME = "KNUTH_PREFERENCES";
+    private static final String PREFERENCE_FIRST_LAUNCH_KEY = "FIRST_LAUNCH_KEY";
 
     private MainPresenter presenter;
 
@@ -135,6 +139,19 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void setOperationsCount(int count) {
         tvOperationCount.setText(getString(R.string.op_count_text, count));
+    }
+
+    @Override
+    public boolean testFirstLaunch(){
+        SharedPreferences preferences = getSharedPreferences(PREFRENCE_NAME, MODE_PRIVATE);
+        return preferences.getBoolean(PREFERENCE_FIRST_LAUNCH_KEY, true);
+    }
+
+    @Override
+    public void setFirstLaunch(){
+        SharedPreferences preferences = getSharedPreferences(PREFRENCE_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(PREFERENCE_FIRST_LAUNCH_KEY, false).apply();
     }
 
     @Override

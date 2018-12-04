@@ -23,6 +23,10 @@ public class MainPresenter {
         view.setGoalNumber(model.getGoal());
         view.updateButtonText(model.getCurrent());
         view.startChronometer();
+        if(view.testFirstLaunch()){
+            view.alertDialogHelp();
+            view.setFirstLaunch();
+        }
     }
 
     public void applyOperator(GameState.Operator operator){

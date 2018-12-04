@@ -18,5 +18,7 @@ public interface MainView {
     void updateButtonText(double current);
     void showBigNumber();
     void alertDialogHelp();
+    boolean testFirstLaunch();
+    void setFirstLaunch();
 
 }
