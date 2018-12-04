@@ -17,5 +17,6 @@ public interface MainView {
     void uncolorButton();
     void updateButtonText(double current);
     void showBigNumber();
+    void alertDialogHelp();
 
 }

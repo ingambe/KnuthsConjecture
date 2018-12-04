@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     Button btFloor;
     @BindView(R.id.bt_square)
     Button btSquare;
+    @BindView(R.id.tv_undo)
+    TextView tvUndo;
+    @BindView(R.id.tv_retry)
+    TextView tvRetry;
 
     private MainPresenter presenter;
 
@@ -59,8 +64,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         presenter.initView(this);
     }
 
-    @OnClick({R.id.bt_square_root, R.id.bt_factorial, R.id.bt_floor, R.id.bt_square, R.id.tv_hint})
+    @OnClick({R.id.bt_square_root, R.id.bt_factorial, R.id.bt_floor, R.id.bt_square, R.id.tv_hint, R.id.tv_retry, R.id.tv_undo})
     public void onClick(View view) {
+        uncolorButton();
         switch (view.getId()) {
             case R.id.bt_square_root:
                 presenter.applyOperator(GameState.Operator.SQUARE_ROOT);
@@ -81,8 +87,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 HintTask task = new HintTask(presenter, builder);
                 task.execute();
                 break;
+            case R.id.tv_undo:
+                presenter.undoMove();
+                break;
+            case R.id.tv_retry:
+                presenter.restart(MainActivity.this);
+                break;
         }
-        uncolorButton();
     }
 
     @Override
@@ -94,9 +105,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.undo_menu:
-                presenter.undoMove();
+        switch (item.getItemId()) {
+            case R.id.help_menu:
+                alertDialogHelp();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -105,16 +116,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void setCurrentNumber(double current) {
-        if(current < 10000) {
+        current = Math.floor(current * 1e2) / 1e2;
+        if (current < 10000) {
             tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_number_size));
-            tvCurrentNumber.setText(getString(R.string.number_text, current));
-        } else if(current > 1E15){
+        } else if (current > 1E15) {
             tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_really_big_number_size));
-            tvCurrentNumber.setText(getString(R.string.number_text, current));
         } else {
             tvCurrentNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.current_big_number_size));
-            tvCurrentNumber.setText(getString(R.string.number_text, current));
         }
+        tvCurrentNumber.setText(getString(R.string.number_text, current));
     }
 
     @Override
@@ -206,17 +216,17 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void updateButtonText(double current) {
-        if(current < 15){
+        if (current < 15) {
             btFactorial.setText(getString(R.string.factorial_text, GameState.factorial(Math.floor(current))));
         } else {
             btFactorial.setText(getString(R.string.big_factorial_text));
         }
-        if(current < 20000) {
+        if (current < 20000) {
             btSquare.setText(getString(R.string.square_text, current * current));
         } else {
             btSquare.setText(getString(R.string.big_square_text));
         }
-        if(current < 1E15) {
+        if (current < 1E15) {
             btSquareRoot.setText(getString(R.string.square_root_text, Math.sqrt(current)));
             btFloor.setText(getString(R.string.floor_text, Math.floor(current)));
         } else {
@@ -230,7 +240,21 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Toast.makeText(this, getString(R.string.too_big_dialog), Toast.LENGTH_LONG).show();
     }
 
-    private static class HintTask extends AsyncTask<Void, Void, GameState.Operator>{
+    @Override
+    public void alertDialogHelp() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setMessage(getString(R.string.game_explanation))
+                .setNeutralButton(R.string.explanation_understood, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(true);
+        builder.create().show();
+    }
+
+    private static class HintTask extends AsyncTask<Void, Void, GameState.Operator> {
 
         private final MainPresenter presenter;
         private final AlertDialog.Builder builder;
@@ -242,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         }
 
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
             builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialog) {
@@ -254,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         }
 
         @Override
-        protected GameState.Operator doInBackground (Void...voids){
+        protected GameState.Operator doInBackground(Void... voids) {
             return presenter.hint();
         }
 

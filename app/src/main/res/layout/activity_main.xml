@@ -52,32 +52,77 @@
         app:layout_constraintStart_toStartOf="@+id/tv_current_number"
         app:layout_constraintTop_toBottomOf="@+id/tv_current_number" />
 
-    <TextView
-        android:id="@+id/tv_hint"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/hint_text"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/hint_text_size"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_goal">
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/hint_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/hint_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/undo_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/hint_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hint"
+            app:layout_constraintEnd_toStartOf="@+id/tv_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_hint" />
+
+        <TextView
+            android:id="@+id/tv_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/retry_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/hint_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_hint"
+            app:layout_constraintTop_toTopOf="@+id/tv_hint" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <Button
             android:id="@+id/bt_square_root"
@@ -102,6 +147,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:background="@color/colorPrimary"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button"
             android:text="@string/factorial_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,9 +157,7 @@
             app:layout_constraintStart_toEndOf="@+id/bt_square_root"
             app:layout_constraintTop_toTopOf="@+id/bt_square_root"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5"
-            android:gravity="bottom|center"
-            android:paddingBottom="@dimen/padding_bottom_button"/>
+            app:layout_constraintWidth_percent="0.5" />
 
         <Button
             android:id="@+id/bt_floor"
@@ -137,6 +182,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:background="@color/colorPrimary"
+            android:gravity="bottom|center"
+            android:paddingBottom="@dimen/padding_bottom_button"
             android:text="@string/square_text"
             android:textSize="@dimen/button_text_size"
             app:layout_constraintEnd_toEndOf="@+id/bt_factorial"
@@ -144,9 +191,8 @@
             app:layout_constraintHeight_percent="0.5"
             app:layout_constraintTop_toBottomOf="@+id/bt_factorial"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5"
-            android:gravity="bottom|center"
-            android:paddingBottom="@dimen/padding_bottom_button" />
+            app:layout_constraintWidth_percent="0.5" />
 
     </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

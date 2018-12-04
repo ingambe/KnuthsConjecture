@@ -3,19 +3,22 @@
     <string name="op_count_text">Operations count: %d</string>
     <string name="goal_text">Goal: %.2f</string>
     <string name="hint_text">Hint</string>
-    <string name="number_text">%.2f</string>
+    <string name="number_text" translatable="false">%.2f</string>
     <string name="square_root_text">√x\n\n%.2f</string>
     <string name="big_square_root_text">√x\n\nToo big</string>
-    <string name="factorial_text">x!\n\n%.2f</string>
+    <string name="factorial_text" translatable="false">x!\n\n%.2f</string>
     <string name="big_factorial_text">x!\n\nToo big</string>
-    <string name="floor_text">\u230Ax\u230B\n\n%.2f</string>
+    <string name="floor_text" translatable="false">\u230Ax\u230B\n\n%.2f</string>
     <string name="big_floor_text">\u230Ax\u230B\n\nToo big</string>
-    <string name="square_text">x\u00B2\n\n%.2f</string>
+    <string name="square_text" translatable="false">x\u00B2\n\n%.2f</string>
     <string name="big_square_text">x\u00B2\n\nToo big</string>
     <string name="success_text">Congratulation ! You succeed in %d steps and %.2f seconds</string>
     <string name="fail_text">Unfortunately you failed. Maybe you should retry ?</string>
     <string name="retry_text">Retry</string>
     <string name="solution_generation_text">Please wait during the generation of the solution</string>
-    <string name="undo_menu">Undo Move</string>
-    <string name="too_big_dialog">This number is already too big !</string>
+    <string name="too_big_dialog">Number already too big</string>
+    <string name="undo_text">Undo</string>
+    <string name="help_menu">Help</string>
+    <string name="explanation_understood">Understood</string>
+    <string name="game_explanation">This game is based on the Knuth\'s Conjecture, who stated that we can transform 4 to any positive integer number using only 4 operations :\n-Square\n-Sqaure root\n-Factorial\n-Floor</string>
 </resources>
