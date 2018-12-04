@@ -20,5 +20,6 @@
     <string name="undo_text">Undo</string>
     <string name="help_menu">Help</string>
     <string name="explanation_understood">Understood</string>
+    <string name="stop_hint_task_button">Stop</string>
     <string name="game_explanation">This game is based on the Knuth\'s Conjecture, who stated that we can transform 4 to any positive integer number using only 4 operations :\n-Square\n-Sqaure root\n-Factorial\n-Floor</string>
 </resources>

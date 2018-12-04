@@ -1,5 +1,6 @@
 package com.tassel.ingambe.knuthsconjecture.Presenter;
 
+import com.tassel.ingambe.knuthsconjecture.MainActivity;
 import com.tassel.ingambe.knuthsconjecture.Model.GameState;
 import com.tassel.ingambe.knuthsconjecture.Solver.Solver;
 import com.tassel.ingambe.knuthsconjecture.View.MainView;
@@ -51,8 +52,8 @@ public class MainPresenter {
         initView(view);
     }
 
-    public GameState.Operator hint() {
-        List<GameState.Operator> solution = Solver.BFS(model);
+    public GameState.Operator hint(MainActivity.HintTask task) {
+        List<GameState.Operator> solution = Solver.BFS(model, task);
         return solution.get(0);
     }
 

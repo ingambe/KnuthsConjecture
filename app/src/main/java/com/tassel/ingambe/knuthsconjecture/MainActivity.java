@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         builder.create().show();
     }
 
-    private static class HintTask extends AsyncTask<Void, Void, GameState.Operator> {
+    public static class HintTask extends AsyncTask<Void, Void, GameState.Operator> {
 
         private final MainPresenter presenter;
         private final AlertDialog.Builder builder;
@@ -271,6 +271,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 @Override
                 public void onCancel(DialogInterface dialog) {
                     cancel(true);
+                    dialog.dismiss();
+                }
+            });
+            builder.setCancelable(true);
+            builder.setNegativeButton(R.string.stop_hint_task_button, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    cancel(true);
+                    dialog.dismiss();
                 }
             });
             dialog = builder.create();
@@ -279,13 +288,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         @Override
         protected GameState.Operator doInBackground(Void... voids) {
-            return presenter.hint();
+            return presenter.hint(this);
         }
 
         @Override
         protected void onPostExecute(GameState.Operator operator) {
-            presenter.colorHint(operator);
-            dialog.dismiss();
+            if(operator != null) {
+                presenter.colorHint(operator);
+                dialog.dismiss();
+            }
         }
     }
 }

@@ -10,13 +10,16 @@ public class GameState {
     private double goal;
     private final List<Operator> operationsList;
     private final List<Double> valueList;
+    // list of easy goal (reachable in approximately 8 steps)
+    private int[] easyGoals = new int[]{5,6,9,15,16,22,23,24,30,36,46,81,120,225,255,256,484,528,529,575,576,633,720,900,942};
 
     public GameState() {
         Random random = new Random();
         this.current = 4;
         valueList = new ArrayList<>();
         valueList.add(current);
-        this.goal = random.nextInt(96) + 5;
+        //this.goal = random.nextInt(96) + 5;
+        this.goal = easyGoals[random.nextInt(easyGoals.length)];
         operationsList = new ArrayList<>();
     }
 
