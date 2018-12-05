@@ -37,5 +37,14 @@ public class SolverTest {
         assertEquals(gameState.getCurrent(), gameState.getGoal(),0.01);
     }
 
+    @Test
+    public void testSolver() {
+        List<GameState.Operator> liste = Solver.BFS(gameState);
+        for(GameState.Operator operator : liste){
+            gameState.operation(operator);
+        }
+        assertEquals(gameState.getCurrent(), gameState.getGoal(),0.01);
+    }
+
 
 }
