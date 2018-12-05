@@ -19,7 +19,7 @@ public class GameState {
         valueList = new ArrayList<>();
         valueList.add(current);
         //this.goal = random.nextInt(96) + 5;
-        this.goal = easyGoals[random.nextInt(easyGoals.length)];
+        this.goal = 5;
         operationsList = new ArrayList<>();
     }
 
