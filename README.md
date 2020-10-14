@@ -12,12 +12,12 @@ Of course this game is not really fun to play, but still interresting.
 
 It's a simple BFS to explore the space of solution, we stop when we found the solution.
 For technical reasons, we don't do factorial above 30, so we don't explore all the possible solutions.
-So, to make the game solvable we limit the goal to a set of value accessible in less than 8 steps with the solver.
+So, to make the game solvable I've limit the goal to a set of value accessible in less than 8 steps with the solver.
 <p align="center">
   <img src="hint.gif" width="50%" height="50%" />
 </p>
 
-## What we use
+## What I've used
 
 * ButterKnife
 * MVP architecture
